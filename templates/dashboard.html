@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+
+        <!-- Dashboard Title -->
+        <h1 id="dashboardTitle">User Dashboard</h1>
+
+
+        <!-- ==================== MY PROFILE ==================== -->
+
+        <div class="dashboard-section">
+
+            <h2>My Profile</h2>
+
+            <div class="profile-info">
+
+                <p>
+                    <strong>Full Name:</strong>
+                    <span id="fullName"></span>
+                </p>
+
+                <p>
+                    <strong>Email Address:</strong>
+                    <span id="email"></span>
+                </p>
+
+                <p>
+                    <strong>Role:</strong>
+                    <span id="role"></span>
+                </p>
+
+                <p>
+                    <strong>Phone Number:</strong>
+                    <span id="phone"></span>
+                </p>
+
+                <p>
+                    <strong>Date of Birth:</strong>
+                    <span id="dob"></span>
+                </p>
+
+                <hr>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==================== UPDATE PROFILE ==================== -->
+
+        <div class="dashboard-section" id="updateProfileSection">
+
+            <h2>Update Profile</h2>
+
+            <form id="profileForm">
+
+                <label>Full Name:</label>
+                <br>
+
+                <input type="text" id="editFullName" required>
+
+                <br><br>
+
+
+                <label>Email Address:</label>
+                <br>
+
+                <input type="email" id="editEmail" disabled>
+
+                <br><br>
+
+
+                <label>Phone Number:</label>
+                <br>
+
+                <input type="tel" id="editPhone" required>
+
+                <br><br>
+
+
+                <label>Date of Birth:</label>
+                <br>
+
+                <input type="date" id="editDob" required>
+
+                <br><br>
+
+
+                <button type="submit">
+                    Update Profile
+                </button>
+
+            </form>
+
+            <p id="message"></p>
+
+            <hr>
+
+        </div>
+
+        <!-- ==================== STUDENT MANAGEMENT ==================== -->
+
+<div class="dashboard-section" id="studentSection">
+
+    <h2>My Teacher</h2>
+
+    <button type="button" onclick="loadStudentTeacher()">
+        View My Teacher
+    </button>
+
+    <p id="studentMessage"></p>
+
+    <div id="studentTeacherInfo"></div>
+
+</div>
+
+        <!-- ==================== TEACHER MANAGEMENT ==================== -->
+
+<div class="dashboard-section" id="teacherSection">
+
+    <h2>My Students</h2>
+
+    <button type="button" onclick="loadTeacherStudents()">
+        View My Students
+    </button>
+
+    <p id="teacherMessage"></p>
+
+    <div id="teacherStudentList"></div>
+
+</div>
+        <!-- ==================== ADMIN MANAGEMENT ==================== -->
+
+        <div class="dashboard-section" id="adminSection">
+
+            <h2>Admin Management</h2>
+
+
+            <!-- CREATE NEW USER -->
+
+            <h3>Create New User</h3>
+
+            <form id="createUserForm">
+
+                <label>Full Name:</label>
+                <br>
+
+                <input type="text" id="newFullName" required>
+
+                <br><br>
+
+
+                <label>Email:</label>
+                <br>
+
+                <input type="email" id="newEmail" required>
+
+                <br><br>
+
+
+                <label>Phone:</label>
+                <br>
+
+                <input type="tel" id="newPhone" required>
+
+                <br><br>
+
+
+                <label>Date of Birth:</label>
+                <br>
+
+                <input type="date" id="newDob" required>
+
+                <br><br>
+
+
+                <label>Role:</label>
+                <br>
+
+                <select id="newRole" required>
+
+                    <option value="">
+                        Select Role
+                    </option>
+
+                    <option value="Teacher">
+                        Teacher
+                    </option>
+
+                    <option value="Student">
+                        Student
+                    </option>
+
+                </select>
+
+                <br><br>
+
+
+                <!-- Teacher Fields -->
+
+                <div id="newTeacherFields" style="display:none;">
+
+                    <label>Subject:</label>
+                    <br>
+
+                    <input type="text" id="newSubject">
+
+                </div>
+
+
+                <!-- Student Fields -->
+
+                <div id="newStudentFields" style="display:none;">
+
+                    <label>Standard:</label>
+                    <br>
+
+                    <input type="text" id="newStandard">
+
+                </div>
+
+                <br>
+
+
+                <button type="submit">
+                    Create User
+                </button>
+
+            </form>
+
+            <p id="createUserMessage"></p>
+
+
+            <hr>
+
+
+            <!-- MANAGE EXISTING USERS -->
+
+            <h3>Manage Existing Users</h3>
+
+            <button type="button" onclick="showAdminMessage()">
+                Manage Users
+            </button>
+
+            <p id="adminMessage"></p>
+
+
+            <!-- User list will appear here -->
+
+           <div id="userList"></div>
+
+<hr>
+
+<h3>Assign Student to Teacher</h3>
+
+<div id="assignmentSection">
+
+    <label>Select Student:</label>
+    <br>
+
+    <select id="studentSelect">
+        <option value="">Select Student</option>
+    </select>
+
+    <br><br>
+
+    <label>Select Teacher:</label>
+    <br>
+
+    <select id="teacherSelect">
+        <option value="">Select Teacher</option>
+    </select>
+
+    <br><br>
+
+    <button type="button" onclick="assignTeacher()">
+        Assign / Reassign Teacher
+    </button>
+
+    <p id="assignmentMessage"></p>
+
+</div>
+
+        </div>
+
+
+        <!-- ==================== PROFILE PICTURE ==================== -->
+
+        <div class="dashboard-section">
+
+            <h2>Profile Picture</h2>
+
+            <img id="profileImage" width="150">
+
+            <br><br>
+
+            <input type="file" id="profilePicture">
+
+            <br><br>
+
+            <button id="uploadButton">
+                Upload / Replace Picture
+            </button>
+
+            <button id="deletePictureButton">
+                Delete Picture
+            </button>
+
+            <br><br>
+
+        </div>
+
+
+        <!-- ==================== ACCOUNT SETTINGS ==================== -->
+
+        <div class="dashboard-section account-section">
+
+            <h2>Account Settings</h2>
+
+            <a href="/change-password">
+                Change Password
+            </a>
+
+            <br><br>
+
+            <button type="button" onclick="logoutUser()">
+                Logout
+            </button>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- Dashboard JavaScript -->
+
+    <script src="/static/dashboard.js"></script>
+
+</body>
+
+</html>

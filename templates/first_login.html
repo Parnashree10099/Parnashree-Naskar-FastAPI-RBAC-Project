@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>First Login</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+
+        <h1>First Login</h1>
+
+        <p>
+            Please complete the verification and change your temporary password.
+        </p>
+
+        <form id="firstLoginForm">
+
+            <label>Email:</label>
+            <br>
+            <input type="email" id="email" required>
+
+            <br><br>
+
+            <label>OTP:</label>
+            <br>
+            <input type="text" id="otp" required>
+
+            <br><br>
+
+            <label>New Password:</label>
+            <br>
+            <input type="password" id="newPassword" required>
+
+            <br><br>
+
+            <button type="submit">
+                Verify & Change Password
+            </button>
+
+        </form>
+
+        <p id="message"></p>
+
+    </div>
+<script src="/static/first_login.js"></script>
+
+</body>
+
+</html>

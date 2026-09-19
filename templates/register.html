@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Registration</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <h1>User Registration</h1>
+
+        <form id="registerForm">
+
+            <label>Full Name:</label><br>
+            <input type="text" id="fullName" required>
+            <br><br>
+
+            <label>Email Address:</label><br>
+            <input type="email" id="email" required>
+            <br><br>
+
+            <label>Phone Number:</label><br>
+            <input type="tel" id="phone" required>
+            <br><br>
+
+            <label>Date of Birth:</label><br>
+            <input type="date" id="dob" required>
+            <br><br>
+
+            <label>Password:</label><br>
+            <input type="password" id="password" required>
+            <br><br>
+
+            <!-- Role Selection -->
+            <label>Role:</label><br>
+
+            <select id="role" required>
+                <option value="">Select your role</option>
+                <option value="Teacher">I am a Teacher</option>
+                <option value="Student">I am a Student</option>
+            </select>
+
+            <br><br>
+
+            <!-- Teacher Subject -->
+            <div id="teacherFields" style="display: none;">
+
+                <label>Subject:</label><br>
+                <input type="text" id="subject">
+
+                <br><br>
+
+            </div>
+
+            <!-- Student Standard -->
+            <div id="studentFields" style="display: none;">
+
+                <label>Standard:</label><br>
+                <input type="text" id="standard">
+
+                <br><br>
+
+            </div>
+
+            <button type="submit">Register</button>
+
+        </form>
+    </div>
+
+    <p id="message"></p>
+
+    <script src="/static/script.js"></script>
+
+    <p id="message"></p>
+
+    <a href="/verify">Verify Email / Enter OTP</a>
+
+    <script>
+        const role = document.getElementById("role");
+
+        const teacherFields = document.getElementById("teacherFields");
+        const studentFields = document.getElementById("studentFields");
+
+        const subject = document.getElementById("subject");
+        const standard = document.getElementById("standard");
+
+        role.addEventListener("change", function() {
+
+            if (role.value === "Teacher") {
+
+                teacherFields.style.display = "block";
+                studentFields.style.display = "none";
+
+                subject.required = true;
+                standard.required = false;
+
+                standard.value = "";
+
+            } 
+            else if (role.value === "Student") {
+
+                studentFields.style.display = "block";
+                teacherFields.style.display = "none";
+
+                standard.required = true;
+                subject.required = false;
+
+                subject.value = "";
+
+            } 
+            else {
+
+                teacherFields.style.display = "none";
+                studentFields.style.display = "none";
+
+                subject.required = false;
+                standard.required = false;
+
+            }
+
+        });
+    </script>
+
+</body>
+</html>
